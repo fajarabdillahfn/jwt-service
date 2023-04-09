@@ -4,11 +4,15 @@ import (
 	"jwt-service/database"
 	"jwt-service/routers"
 	"log"
+	"os"
 )
 
 func main() {
 	database.StartDB()
+
+	port := os.Getenv("PORT")
+
 	r := routers.StartApp()
 	log.Println("starting app...")
-	r.Run(":8080")
+	r.Run(":" + port)
 }
